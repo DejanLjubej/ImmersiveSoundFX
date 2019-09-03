@@ -9,19 +9,37 @@ class MyApp extends StatelessWidget {
     
     return MaterialApp(
       title: 'Situational Sound Effects',
-      home: Scaffold(
+      home: ButtonListDisply(),
+    );
+  }
+
+    
+}
+
+class ButtonListDisply extends StatelessWidget{
+
+ final List<FlatButton> btoon = [];
+ int number = 5;
+  @override
+  Widget build (BuildContext context){
+    return Scaffold(
         appBar: AppBar(
           title: Text('Situational Sound Effects'),
         ),
         body: Center(
-          child: btn(),
+          child: ListView.builder(
+            itemCount: number,
+            itemBuilder: (BuildContext context, int index){
+              return tryoutButton();
+            }
+          ),
         ), 
 
-      ),
-    );
+      );
   }
 
-  Widget tryoutButton(){
+
+Widget tryoutButton(){
     return  FlatButton(
      
       color: Colors.blue,
@@ -40,6 +58,7 @@ class MyApp extends StatelessWidget {
     );
   }
 
+
     Widget btn(){
       return ListView(
         children: <Widget>[
@@ -49,5 +68,5 @@ class MyApp extends StatelessWidget {
           tryoutButton(),
         ],
       );
-    }  
+    }
 }
