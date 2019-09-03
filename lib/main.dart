@@ -2,4 +2,52 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
 
-vat even 2x edkjčghdsjghDČHGČADSHGLKDHGADHGA
+class MyApp extends StatelessWidget {
+  @override
+  
+  Widget build (BuildContext context){
+    
+    return MaterialApp(
+      title: 'Situational Sound Effects',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Situational Sound Effects'),
+        ),
+        body: Center(
+          child: btn(),
+        ), 
+
+      ),
+    );
+  }
+
+  Widget tryoutButton(){
+    return  FlatButton(
+     
+      color: Colors.blue,
+      textColor: Colors.white,
+      disabledColor: Colors.grey,
+      disabledTextColor: Colors.black,
+      padding: EdgeInsets.all(8.0),
+      splashColor: Colors.blueAccent,
+      onPressed: () {
+        /*...*/
+      },
+      child: Text(
+        "Sound Name/Icon",
+        style: TextStyle(fontSize: 20.0),
+      ),
+    );
+  }
+
+    Widget btn(){
+      return ListView(
+        children: <Widget>[
+          tryoutButton(),
+          tryoutButton(),
+          tryoutButton(),
+          tryoutButton(),
+        ],
+      );
+    }  
+}
