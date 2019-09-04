@@ -34,13 +34,19 @@ class ButtonListDisply extends StatelessWidget{
             }
           ),
         ), 
-
+        floatingActionButton: FloatingActionButton(
+      onPressed: () {
+        number ++;
+      },
+      child: Icon(Icons.mic),
+      backgroundColor: Colors.pink,
+    ),
       );
   }
 
 
 Widget tryoutButton(){
-    return  FlatButton(
+    return  RaisedButton(
      
       color: Colors.blue,
       textColor: Colors.white,
