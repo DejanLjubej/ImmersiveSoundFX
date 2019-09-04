@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+int _number = 7;
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -10,6 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Situational Sound Effects',
       home: ButtonListDisply(),
+     
     );
   }
 
@@ -19,7 +21,6 @@ class MyApp extends StatelessWidget {
 class ButtonListDisply extends StatelessWidget{
 
  final List<FlatButton> btoon = [];
- int number = 7;
   @override
   Widget build (BuildContext context){
     return Scaffold(
@@ -28,15 +29,15 @@ class ButtonListDisply extends StatelessWidget{
         ),
         body: Center(
           child: ListView.builder(
-            itemCount: number,
+            itemCount: _number,
             itemBuilder: (BuildContext context, int index){
               return tryoutButton();
             }
           ),
         ), 
-        floatingActionButton: FloatingActionButton(
+         floatingActionButton: FloatingActionButton(
       onPressed: () {
-        number ++;
+        _number ++;
       },
       child: Icon(Icons.mic),
       backgroundColor: Colors.pink,
