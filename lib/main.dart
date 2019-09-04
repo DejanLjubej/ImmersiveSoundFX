@@ -1,4 +1,7 @@
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,19 +12,24 @@ class MyApp extends StatelessWidget {
     
     return MaterialApp(
       title: 'Situational Sound Effects',
-      home: ButtonListDisply(),
+      home: ButtonListDisplay(),
     );
   }
-
-    
 }
 
-class ButtonListDisply extends StatelessWidget{
-
- final List<FlatButton> btoon = [];
- int number = 7;
+class ButtonListDisplay extends StatefulWidget {
   @override
-  Widget build (BuildContext context){
+  _ExampleAppState createState() => _ExampleAppState();
+}
+
+class _ExampleAppState extends State<ButtonListDisplay> {
+  AudioCache audioCache = new AudioCache();
+  AudioPlayer audioPlayer = new AudioPlayer();
+  String localFilePath;
+
+  @override
+  Widget build(BuildContext context) {
+    int number = 1;
     return Scaffold(
         appBar: AppBar(
           title: Text('Situational Sound Effects'),
@@ -34,12 +42,9 @@ class ButtonListDisply extends StatelessWidget{
             }
           ),
         ), 
-
       );
   }
-
-
-Widget tryoutButton(){
+  Widget tryoutButton(){
     return  FlatButton(
      
       color: Colors.blue,
@@ -49,7 +54,7 @@ Widget tryoutButton(){
       padding: EdgeInsets.all(8.0),
       splashColor: Colors.blueAccent,
       onPressed: () {
-        /*...*/
+        audioCache.play('running.wav');
       },
       child: Text(
         "Sound Name/Icon",
@@ -57,16 +62,4 @@ Widget tryoutButton(){
       ),
     );
   }
-
-
-    Widget btn(){
-      return ListView(
-        children: <Widget>[
-          tryoutButton(),
-          tryoutButton(),
-          tryoutButton(),
-          tryoutButton(),
-        ],
-      );
-    }
 }
