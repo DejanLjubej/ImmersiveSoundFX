@@ -42,10 +42,26 @@ class _ExampleAppState extends State<ButtonListDisplay> {
             }
           ),
         ), 
+<<<<<<< HEAD
       );
   }
   Widget tryoutButton(){
     return  FlatButton(
+=======
+        floatingActionButton: FloatingActionButton(
+      onPressed: () {
+        number ++;
+      },
+      child: Icon(Icons.mic),
+      backgroundColor: Colors.pink,
+    ),
+      );
+  }
+
+
+Widget tryoutButton(){
+    return  RaisedButton(
+>>>>>>> 75cbfef55419d11be8875834e227c405bc8ee05b
      
       color: Colors.blue,
       textColor: Colors.white,
