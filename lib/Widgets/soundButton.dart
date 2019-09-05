@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 
 Widget tryoutButton(int i) {
   AudioCache audioCache = new AudioCache();
-  return Row(
+  return Expanded(flex:1, child: Row(
     crossAxisAlignment: CrossAxisAlignment.center,
+    mainAxisAlignment: MainAxisAlignment.center,
+    mainAxisSize: MainAxisSize.max,
     children: <Widget>[
       RaisedButton(
         shape: ContinuousRectangleBorder(
@@ -27,5 +29,5 @@ Widget tryoutButton(int i) {
         ),
       )
     ],
-  );
+  ));
 }
