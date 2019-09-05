@@ -9,7 +9,7 @@ Widget tryoutButton(int i) {
     mainAxisAlignment: MainAxisAlignment.center,
     mainAxisSize: MainAxisSize.max,
     children: <Widget>[
-      RaisedButton(
+      Expanded(flex:1, child: RaisedButton(
         shape: ContinuousRectangleBorder(
       borderRadius: BorderRadius.circular(60.0),
     ),
@@ -25,9 +25,9 @@ Widget tryoutButton(int i) {
         },
         child: Text(
           (i+1).toString()+'sadfadfadf',
-          style: TextStyle(fontSize: 15.0),
+          style: TextStyle(fontSize: 25.0),
         ),
       )
-    ],
+      )],
   ));
 }
