@@ -3,11 +3,13 @@ import 'soundButton.dart';
 
 
 Widget rowOfButtons(int i) {
-  return Row(
+  return Center(child: 
+  Row(
     children: <Widget>[
       tryoutButton(i),
       tryoutButton(i+1),
       tryoutButton(i+2),
     ],
-  );
+  ),
+  ); 
 }
