@@ -4,15 +4,19 @@ import 'package:flutter/material.dart';
 
 Widget tryoutButton(int i) {
   AudioCache audioCache = new AudioCache();
-  return Expanded(flex:1, child: Row(
+  return Expanded(
+    flex:1, 
+  child: Row(
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.center,
     mainAxisSize: MainAxisSize.max,
+
     children: <Widget>[
       Expanded(flex:1, child: RaisedButton(
         shape: ContinuousRectangleBorder(
       borderRadius: BorderRadius.circular(60.0),
     ),
+    
         elevation: 10,
         color: Colors.blue,
         textColor: Colors.white,
@@ -25,7 +29,9 @@ Widget tryoutButton(int i) {
         },
         child: Text(
           (i+1).toString()+'sadfadfadf',
-          style: TextStyle(fontSize: 25.0),
+          overflow: TextOverflow.fade,
+          maxLines: 1,
+          style: TextStyle(fontSize: 20.0),
         ),
       )
       )],
