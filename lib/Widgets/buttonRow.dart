@@ -6,9 +6,11 @@ Widget rowOfButtons(int i) {
   return Center(child: 
   Row(
     children: <Widget>[
+
       tryoutButton(i),
       tryoutButton(i+1),
-      tryoutButton(i+2),
+  
+
     ],
   ),
   ); 

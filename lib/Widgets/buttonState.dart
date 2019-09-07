@@ -12,7 +12,7 @@ class _ExampleAppState extends State<ButtonListDisplay> {
 
   @override
   Widget build(BuildContext context) {
-  int _i =-3;
+  int _i =-2;
   int _number = 10;
     
     return Scaffold(
@@ -23,7 +23,7 @@ class _ExampleAppState extends State<ButtonListDisplay> {
         child: ListView.builder(
           itemCount: _number,
           itemBuilder: (BuildContext context, int index){
-            _i +=3;
+            _i +=2;
             return rowOfButtons(_i);
           }
         ),

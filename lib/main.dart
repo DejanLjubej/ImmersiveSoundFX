@@ -15,6 +15,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Situational Sound Effects',
       home: ButtonListDisplay(),
+      theme: ThemeData(
+        brightness:     Brightness.light,
+        canvasColor:    Colors.blue[50],
+        primaryColor:   Colors.blueGrey[700],
+        accentColor:    Colors.amber,
+    ),
     );
   }
 }

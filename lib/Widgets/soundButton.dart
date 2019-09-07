@@ -14,21 +14,21 @@ Widget tryoutButton(int i) {
     children: <Widget>[
       Expanded(flex:1, child: RaisedButton(
         shape: ContinuousRectangleBorder(
-      borderRadius: BorderRadius.circular(60.0),
+      borderRadius: BorderRadius.circular(10.0),
     ),
     
-        elevation: 10,
-        color: Colors.blue,
+        elevation: 5,
+        color: Colors.deepPurple[900],
         textColor: Colors.white,
         disabledColor: Colors.grey,
         disabledTextColor: Colors.black,
-        padding: EdgeInsets.all(10.0),
+        padding: EdgeInsets.all(1.0),
         splashColor: Colors.blueAccent,
         onPressed: () {
           audioCache.play('running.wav');
         },
         child: Text(
-          (i+1).toString()+'sadfadfadf',
+          (i+1).toString()+" "+'NOo!!',
           overflow: TextOverflow.fade,
           maxLines: 1,
           style: TextStyle(fontSize: 20.0),
