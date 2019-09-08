@@ -4,14 +4,14 @@ import 'soundButton.dart';
 
 Widget rowOfButtons(int i) {
   return Center(child: 
-  Row(
-    children: <Widget>[
+ 
+      Row(
 
-      tryoutButton(i),
-      tryoutButton(i+1),
-  
-
-    ],
-  ),
+        children: <Widget>[
+          tryoutButton(i),         
+          tryoutButton(i+1),
+        ],
+      ),
+    
   ); 
 }

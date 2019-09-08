@@ -20,13 +20,17 @@ class _ExampleAppState extends State<ButtonListDisplay> {
         title: Text('Situational Sound Effects'),
       ),
       body: Center(
-        child: ListView.builder(
-          itemCount: _number,
-          itemBuilder: (BuildContext context, int index){
-            _i +=2;
-            return rowOfButtons(_i);
-          }
-        ),
+        child: Container(
+          margin: const EdgeInsets.all(10.0), 
+          child: 
+          ListView.builder(
+            itemCount: _number,
+            itemBuilder: (BuildContext context, int index){
+              _i +=2;
+              return rowOfButtons(_i);
+            }
+          ),
+        )
       ),
     );
   }
