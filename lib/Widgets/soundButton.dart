@@ -7,34 +7,31 @@ Widget tryoutButton(int i) {
   return Expanded(
       flex: 1,
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-               RaisedButton(
-                  shape: ContinuousRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  elevation: 5,
-                  color: Colors.deepPurple[900],
-                  textColor: Colors.white,
-                  disabledColor: Colors.grey,
-                  disabledTextColor: Colors.black,
-                  padding: EdgeInsets.all(1.0),
-                  splashColor: Colors.blueAccent,
-                  onPressed: () {
-                    audioCache.play('running.wav');
-                  },
-               
-                         child: Text(
-                            (i + 1).toString() + " " + 'NOo0o0o0o0ss!',
-                            overflow: TextOverflow.clip,
-                            maxLines: 1,
-                            style: TextStyle(fontSize: 20.0),
-                          ),
-                        
-                      )
-                    
-        ]
-      ));
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            RaisedButton(
+              shape: ContinuousRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              elevation: 5,
+              color: Colors.deepPurple[900],
+              textColor: Colors.white,
+              disabledColor: Colors.grey,
+              disabledTextColor: Colors.black,
+              padding: EdgeInsets.all(1.0),
+              splashColor: Colors.blueAccent,
+              onPressed: () {
+                audioCache.play('running.wav');
+              },
+              child: Text(
+                (i + 1).toString() + " " + 'NOo0o0o0o0ss!',
+                overflow: TextOverflow.clip,
+                maxLines: 1,
+                
+                style: TextStyle(fontSize: 20.0),
+              ),
+            )
+          ]));
 }
