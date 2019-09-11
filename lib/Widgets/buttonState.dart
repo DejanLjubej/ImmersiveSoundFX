@@ -14,21 +14,23 @@ class _ExampleAppState extends State<ButtonListDisplay> {
   Widget build(BuildContext context) {
     int _i = -2;
     int _number = 50;
-
+    int _flex=1;
+    double _height = 100;
     return Scaffold(
       appBar: AppBar(
         title: Text('Situational Sound Effects'),
       ),
-      body: Center(
-          child: Container(
+      body:  Container(
         margin: const EdgeInsets.all(10.0),
+        
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Expanded(
-                flex: 1,
+                flex: 3,
                 child: Container(
                   height: 1000,
                   child: Row(
@@ -37,7 +39,7 @@ class _ExampleAppState extends State<ButtonListDisplay> {
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
                       Expanded(
-                        flex: 1,
+                        flex: 2,
                         child: ListView.builder(
                             scrollDirection: Axis.vertical,
                             shrinkWrap: true,
@@ -52,35 +54,52 @@ class _ExampleAppState extends State<ButtonListDisplay> {
                 )),
             Flexible(
                 flex: 1,
-                child: Container(
-                  height: 100,
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                    color: Colors.black,
-                    width: 1,
-                  )),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    mainAxisSize: MainAxisSize.max,
-                    children: <Widget>[
-                      Flexible(
-                        flex: 1,
-                        child: ListView.builder(
-                            scrollDirection: Axis.vertical,
-                            itemCount: _number,
-                            shrinkWrap: true,
-                            itemBuilder: (BuildContext context, int index) {
-                              _i += 2;
-                              return rowOfButtons(_i);
-                            }),
-                      ),
-                    ],
-                  ),
-                )),
+                child: Column(children: <Widget>[
+
+
+                        Flexible(child: 
+                          RaisedButton(
+                            onPressed:(){
+                              setState(() {
+                                _height=300;
+                                
+                              });
+
+                          } 
+                        )),
+                  Container(
+                    height: _height,
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                      color: Colors.black,
+                      width: 1,
+                    )),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisSize: MainAxisSize.max,
+                      
+                      children: <Widget>[
+                        Flexible(
+                          flex: _flex,
+                          child: ListView.builder(
+                              scrollDirection: Axis.vertical,
+                              itemCount: _number,
+                              shrinkWrap: true,
+                              itemBuilder: (BuildContext context, int index) {
+                                _i += 2;
+                                return rowOfButtons(_i);
+                              }),
+                        ),
+                      ],
+                    ),
+                  )
+                ],)
+                
+                ),
           ],
         ),
-      )),
+      ),
     );
   }
 }
