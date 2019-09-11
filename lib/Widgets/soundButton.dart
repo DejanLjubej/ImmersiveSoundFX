@@ -22,16 +22,22 @@ Widget tryoutButton(int i) {
               disabledTextColor: Colors.black,
               padding: EdgeInsets.all(1.0),
               splashColor: Colors.blueAccent,
+              
               onPressed: () {
                 audioCache.play('running.wav');
               },
-              child: Text(
-                (i + 1).toString() + " " + 'NOo0o0o0o0ss!',
-                overflow: TextOverflow.clip,
-                maxLines: 1,
-                
-                style: TextStyle(fontSize: 20.0),
-              ),
+              child:Container(
+                padding: EdgeInsets.all(7),
+                width: 100,
+                child: 
+                  Text(
+                    'NOo0ossss0o0o0!',
+                    overflow: TextOverflow.clip,
+                    maxLines: 1,
+                    
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+              ) 
             )
           ]));
 }
