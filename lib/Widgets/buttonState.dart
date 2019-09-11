@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'buttonRow.dart';
 
@@ -29,12 +30,13 @@ class _ExampleAppState extends State<ButtonListDisplay> {
             Expanded(
                 flex: 1,
                 child: Container(
+                  height: 1000,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
-                      Flexible(
+                      Expanded(
                         flex: 1,
                         child: ListView.builder(
                             scrollDirection: Axis.vertical,
@@ -48,18 +50,18 @@ class _ExampleAppState extends State<ButtonListDisplay> {
                     ],
                   ),
                 )),
-            Expanded(
+            Flexible(
                 flex: 1,
                 child: Container(
-                  height: 11,
+                  height: 100,
                   decoration: BoxDecoration(
                       border: Border.all(
                     color: Colors.black,
-                    width: 5,
+                    width: 1,
                   )),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
                       Flexible(
