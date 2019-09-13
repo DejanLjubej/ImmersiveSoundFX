@@ -1,6 +1,7 @@
 import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
+import 'package:temp/assetManager/listOfSounds.dart';
 
 Widget tryoutButton(int i) {
   AudioCache audioCache = new AudioCache();
@@ -24,14 +25,14 @@ Widget tryoutButton(int i) {
               splashColor: Colors.blueAccent,
               
               onPressed: () {
-                audioCache.play('running.wav');
+                audioCache.play(soundList[i]);
               },
               child:Container(
                 padding: EdgeInsets.all(7),
                 width: 100,
                 child: 
                   Text(
-                    'NOo0ossss0o0o0!',
+                    soundList[i],
                     overflow: TextOverflow.clip,
                     maxLines: 1,
                     

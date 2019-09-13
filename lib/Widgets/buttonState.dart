@@ -1,10 +1,14 @@
 import 'dart:ui';
-
+import 'package:temp/assetManager/listOfSounds.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'buttonRow.dart';
 
 
 const kMinScrollBarHeight = 20.0;
+double _bcz =soundList.length/2.round();
+final int _number = _bcz.toInt();
+
 class ButtonListDisplay extends StatefulWidget {
   @override
   _ExampleAppState createState() => _ExampleAppState();
@@ -12,45 +16,18 @@ class ButtonListDisplay extends StatefulWidget {
 
 class _ExampleAppState extends State<ButtonListDisplay> {
   String localFilePath;
-  double _height = 150;
-  int _i = -2;
-  int _number = 50;
+  double _height = 50;
+  int _i = -1;
   double _scrollBarOffset = 0.0;
+
+  bool _isExpanded = false;
+  IconData _arrow = Icons.arrow_drop_up;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Situational Sound Effects'),
-      ),
-      body: Container(
+    return  Container(
         margin: const EdgeInsets.all(10.0),
-        child: Stack(
-          children: <Widget>[
-            Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Expanded(
-                    flex: 3,
-                    child: Container(
-                      height: 100,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.max,
-                        children: <Widget>[
-                          Expanded(
-                            flex: 2,
-                            child: buttonList(),
-                          ),
-                        ],
-                      ),
-                    ),
-                  )
-                ]),
-            Column(
+        child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               mainAxisSize: MainAxisSize.max,
@@ -60,6 +37,11 @@ class _ExampleAppState extends State<ButtonListDisplay> {
                   height: _height,
                   
                   decoration: BoxDecoration(
+                      
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(20.0),
+                        bottom: Radius.circular(3)),
+                        
                       color: Colors.blueGrey,
                       border: Border.all(
                         color: Colors.black,
@@ -68,14 +50,45 @@ class _ExampleAppState extends State<ButtonListDisplay> {
                   child: Column(
                     
                     children: <Widget>[
-                      Expanded(
-                        child: RaisedButton(
+                      Flexible(
+                        
+                        child: 
+                        RaisedButton(
+                          shape: ContinuousRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              elevation: 5,
+              color: Colors.deepPurple[900],
+              textColor: Colors.white,
+              disabledColor: Colors.grey,
+              disabledTextColor: Colors.black,
+              padding: EdgeInsets.all(1.0),
+              splashColor: Colors.blueAccent,
+              child: Container(
+                height: 200,
+                margin: const EdgeInsets.all(2),
+                child:Icon(_arrow)),
+              
                           onPressed: () {
-                            setState(() {
-                              _height += 60;
-                            });
-                      })),
-                      Expanded(
+                           setState(() {
+                             
+                             //this _i really shuldn't be here
+                              _i=-1;
+
+                              if(_isExpanded != true){
+                              _height = 400;
+                              _isExpanded = true;
+                              _arrow = Icons.arrow_drop_down;
+                              }else{
+                                _height = 50;
+                                _isExpanded = false;
+                                _arrow = Icons.arrow_drop_up;
+                              }
+                           });
+                           
+                      })
+                      ),
+                      Flexible(
                         flex: 3,
                         child: buttonList(),
                       ),
@@ -83,11 +96,9 @@ class _ExampleAppState extends State<ButtonListDisplay> {
                   ),
                 )
               ],
-            )
-          ],
-        ),
+            ),
 
-      ),
+      
     );
   }
 
@@ -98,9 +109,11 @@ class _ExampleAppState extends State<ButtonListDisplay> {
         itemCount: _number,
         shrinkWrap: true,
         itemBuilder: (BuildContext context, int index) {
-          _i += 2;
+          _i += 1;
+          
           return rowOfButtons(_i);
-        });
+        }
+        );
   }
 }
 
