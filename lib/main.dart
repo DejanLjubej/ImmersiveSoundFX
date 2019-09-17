@@ -4,9 +4,12 @@ import 'dart:ui';
 import 'package:temp/assetManager/listOfSounds.dart';
 import 'package:flutter/rendering.dart';
 import 'Widgets/buttonRow.dart';
-
+import 'package:audio_recorder/audio_recorder.dart';
+import 'Widgets/voiceRecorder.dart';
 
 void main() => runApp(MyApp());
+
+
 
 class MyApp extends StatelessWidget {
   @override  
@@ -73,7 +76,7 @@ class Avs extends StatelessWidget{
                     ),
                   )
                 ]),
-            ButtonListDisplay(),
+            MyRecorder(),
           ],
         ),
 
