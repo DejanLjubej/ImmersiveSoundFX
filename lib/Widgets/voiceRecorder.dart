@@ -75,7 +75,7 @@ class AppBodyState extends State<AppBody> {
               new Text("Format: ${_recording.audioOutputFormat}"),
               new Text("Extension : ${_recording.extension}"),
               new Text(
-                  "Audio recording duration : ${_recording.duration.toString()}")
+                  "Audio recording duration : ${_recording.duration.toString()}"),
             ]),
       ),
     );
@@ -125,9 +125,9 @@ class AppBodyState extends State<AppBody> {
     _controller.text = recording.path;
   }
 
-_delete() async{
-  try{
-     if (await AudioRecorder.hasPermissions) {
+  _delete() async {
+    try {
+      if (await AudioRecorder.hasPermissions) {
         if (_controller.text != null && _controller.text != "") {
           String path = _controller.text;
           if (!_controller.text.contains('/')) {
@@ -151,8 +151,8 @@ _delete() async{
         Scaffold.of(context).showSnackBar(
             new SnackBar(content: new Text("You must accept permissions")));
       }
-  }catch (e){
-    print(e);
+    } catch (e) {
+      print(e);
+    }
   }
-}
 }

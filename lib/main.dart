@@ -4,44 +4,32 @@ import 'dart:ui';
 import 'package:temp/assetManager/listOfSounds.dart';
 import 'package:flutter/rendering.dart';
 import 'Widgets/buttonRow.dart';
-import 'package:audio_recorder/audio_recorder.dart';
-import 'Widgets/voiceRecorder.dart';
 
 void main() => runApp(MyApp());
 
-
-
 class MyApp extends StatelessWidget {
-  @override  
-  Widget build (BuildContext context){
-    
+  @override
+  Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Situational Sound Effects',
-      home:  Avs(),
+      home: Avs(),
       theme: ThemeData(
-        brightness:     Brightness.light,
-        canvasColor:    Colors.blue[50],
-        primaryColor:   Colors.blueGrey[700],
-        accentColor:    Colors.amber,
-    ),
+        brightness: Brightness.light,
+        canvasColor: Colors.blue[50],
+        primaryColor: Colors.blueGrey[700],
+        accentColor: Colors.amber,
+      ),
     );
-    
   }
 }
 
-
-final double _bcz =soundList.length/2.round();
+final double _bcz = soundList.length / 2.round();
 final int _number = _bcz.toInt();
-class Avs extends StatelessWidget{
-  @override
-  noSuchMethod(Invocation i) => super.noSuchMethod(i);
-  String localFilePath;
-  double _height = 50;
-  int _i = -2;
-  double _scrollBarOffset = 0.0;
+int _i = -2;
 
-  bool _isExpanded = false;
-  IconData _arrow = Icons.arrow_drop_up;
+class Avs extends StatelessWidget {
+  @override
+  //noSuchMethod(Invocation i) => super.noSuchMethod(i);
 
   @override
   Widget build(BuildContext context) {
@@ -76,10 +64,9 @@ class Avs extends StatelessWidget{
                     ),
                   )
                 ]),
-            MyRecorder(),
+            ButtonListDisplay(),
           ],
         ),
-
       ),
     );
   }
@@ -96,11 +83,3 @@ class Avs extends StatelessWidget{
         });
   }
 }
-
-
-
-
-
-
-  
-  

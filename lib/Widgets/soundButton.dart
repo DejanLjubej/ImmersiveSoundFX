@@ -13,32 +13,28 @@ Widget tryoutButton(int i) {
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             RaisedButton(
-              shape: ContinuousRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              elevation: 5,
-              color: Colors.deepPurple[900],
-              textColor: Colors.white,
-              disabledColor: Colors.grey,
-              disabledTextColor: Colors.black,
-              padding: EdgeInsets.all(1.0),
-              splashColor: Colors.blueAccent,
-              
-              onPressed: () {
-                audioCache.play(soundList[i]);
-              },
-              child:Container(
-                padding: EdgeInsets.all(7),
-                width: 100,
-                child: 
-                  Text(
+                shape: ContinuousRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                elevation: 5,
+                color: Colors.deepPurple[900],
+                textColor: Colors.white,
+                disabledColor: Colors.grey,
+                disabledTextColor: Colors.black,
+                padding: EdgeInsets.all(1.0),
+                splashColor: Colors.blueAccent,
+                onPressed: () {
+                  audioCache.play(soundList[i]);
+                },
+                child: Container(
+                  padding: EdgeInsets.all(7),
+                  width: 100,
+                  child: Text(
                     soundList[i],
                     overflow: TextOverflow.clip,
                     maxLines: 1,
-                    
                     style: TextStyle(fontSize: 20.0),
                   ),
-              ) 
-            )
+                ))
           ]));
 }

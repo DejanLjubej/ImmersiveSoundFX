@@ -1,8 +1,3 @@
-import 'package:flutter/widgets.dart';
-
-
-
-
 
 var soundList = [
   "bell_sound.mp3",
@@ -15,3 +10,7 @@ var soundList = [
   "fatr.mp3",
   "horror.mp3",
   "thunderstruck.mp3"];
+
+  List<String> customSounds = [
+
+  ];
