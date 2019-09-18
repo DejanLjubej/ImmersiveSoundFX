@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'dart:convert';
+
 import 'dart:ui';
 import 'package:temp/assetManager/listOfSounds.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,8 @@ import 'package:file/file.dart';
 import 'package:file/local.dart';
 
 import '../assetManager/listOfSounds.dart';
+import '../assetManager/directoryGetFiles.dart';
+import 'voiceRecorder.dart';
 
 const kMinScrollBarHeight = 20.0;
 double _bcz = soundList.length / 2.round();
@@ -24,14 +28,18 @@ class ButtonListDisplay extends StatefulWidget {
       : this.localFileSystem = localFileSystem ?? LocalFileSystem();
 
   @override
-  State<StatefulWidget> createState() => _ExampleAppState();
+  State<StatefulWidget> createState() => ExampleAppState();
+  
 }
 
-class _ExampleAppState extends State<ButtonListDisplay> {
+
+class ExampleAppState extends State<ButtonListDisplay> {
   Recording _recording = new Recording();
   bool _isRecording = false;
   Random random = new Random();
   TextEditingController _controller = new TextEditingController();
+
+  static var mainSounds;
 
   String localFilePath;
   double _height = 50;
@@ -85,7 +93,10 @@ class _ExampleAppState extends State<ButtonListDisplay> {
                               margin: const EdgeInsets.all(1),
                               child: Icon(_arrow)),
                           onPressed: () {
-                            setState(() {
+                            initAvatars();
+                            //GetItemsFromAssets();
+                            GetItemsFromAssetsState().initAvatars(context);
+                            setState (() {
                               //this _i really shuldn't be here
                               _i = -1;
 
@@ -103,13 +114,32 @@ class _ExampleAppState extends State<ButtonListDisplay> {
                         )),
                   ],
                 ),
-                recordButton(),
+                AppBodyState().recordButton(),
+                
               ],
             ),
           )
         ],
       ),
     );
+        }
+    initAvatars() async {
+          // >> To get paths you need these 2 lines
+          final manifestContent = await DefaultAssetBundle.of(context).loadString('AssetManifest.json');
+
+          final Map<String, dynamic> manifestMap = json.decode(manifestContent);
+          // >> To get paths you need these 2 lines
+
+          final soundPaths = manifestMap.keys
+              .where((String key) => key.contains('assets'))
+              .where((String key) => key.contains('.mp3'))
+              .toList();
+              print(soundPaths.toString());
+
+          setState(() {
+            mainSounds = soundPaths;
+            print(mainSounds[1].toString().split('/')[1]);
+          });
   }
 
   Widget recordButton() {
@@ -134,7 +164,6 @@ class _ExampleAppState extends State<ButtonListDisplay> {
           timer();
         });
   }
-
   timer() {
     Timer(Duration(seconds: 5), () {
       _stop();
@@ -173,6 +202,7 @@ class _ExampleAppState extends State<ButtonListDisplay> {
     customSounds.add(recording.path);
     print(customSounds);
   }
+
 
   //widget responsible for displaying the list of sounds
   Widget buttonList() {

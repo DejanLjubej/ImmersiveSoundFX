@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'soundButton.dart';
 
-
 //for displaying rows of standard sounds
 Widget rowOfButtons(int i) {
 
@@ -30,3 +29,4 @@ Widget customSoundRow (int i) {
     ],
   );
 }
+    

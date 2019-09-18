@@ -2,8 +2,11 @@ import 'package:audioplayers/audio_cache.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/material.dart';
 import 'package:temp/assetManager/listOfSounds.dart';
-
+import 'package:temp/assetManager/directoryGetFiles.dart';
+import 'buttonState.dart';
+//import 'package:temp/main.dart';
 Widget tryoutButton(int i) {
+  
   AudioCache audioCache = new AudioCache();
   return Expanded(
       flex: 1,
@@ -30,7 +33,10 @@ Widget tryoutButton(int i) {
                   padding: EdgeInsets.all(7),
                   width: 100,
                   child: Text(
-                    soundList[i],
+                    // ExampleAppState.mainSounds[i],
+                    //soundList[i],
+                    GetItemsFromAssetsState.avatars[i],
+
                     overflow: TextOverflow.clip,
                     maxLines: 1,
                     style: TextStyle(fontSize: 20.0),
