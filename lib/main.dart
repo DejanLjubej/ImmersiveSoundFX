@@ -11,12 +11,10 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   
-  static var avatars;
   @override
   Widget build(BuildContext context) {
-    initAvatars(context);
     return MaterialApp(
-      title: 'Situational Sound Effects',
+      title: 'situational sound effects',
       home: Avs(),
       theme: ThemeData(
         
@@ -27,34 +25,15 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
-   initAvatars(c) async {
-    // >> To get paths you need these 2 lines
-    final manifestContent =
-        await DefaultAssetBundle.of(c).loadString('AssetManifest.json');
-
-    final Map<String, dynamic> manifestMap = json.decode(manifestContent);
-    // >> To get paths you need these 2 lines
-
-    final imagePaths = manifestMap.keys
-        .where((String key) => key.contains('images/avatars/'))
-        .where((String key) => key.contains('.mp3'))
-        .toList();
-    print(imagePaths.toString() + "whtnw");
-
-    
-      avatars = imagePaths;
-      print(avatars[1]);
-      
-    
-  }
 }
 
 
 
-final double _bcz = soundList.length / 2.round();
+final double _bcz = soundList.length / 2;
 final int _number = _bcz.toInt();
 
 class Avs extends StatelessWidget {
+ // static var avatars;
   int _i = -2;
   @override
   //noSuchMethod(Invocation i) => super.noSuchMethod(i);
@@ -67,6 +46,8 @@ class Avs extends StatelessWidget {
         margin: const EdgeInsets.all(10.0),
         child: Stack(
           children: <Widget>[
+                  //GetItemsFromAssetsState(),
+                  GetItemsFromAssets(),
             Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -91,13 +72,30 @@ class Avs extends StatelessWidget {
                   )
                 ]),
             ButtonListDisplay(),
-            
           ],
         ),
       ),
     );
   }
 
+  //  initAvatars(c) async {
+  //   // >> To get paths you need these 2 lines
+  //   final manifestContent =
+  //       await DefaultAssetBundle.of(c).loadString('AssetManifest.json');
+
+  //   final Map<String, dynamic> manifestMap = json.decode(manifestContent);
+  //   // >> To get paths you need these 2 lines
+
+  //   final imagePaths = manifestMap.keys
+  //       .where((String key) => key.contains('images/avatars/'))
+  //       .where((String key) => key.contains('.mp3'))
+  //       .toList();
+  //   print(imagePaths.toString() + "whtnw");
+
+    
+  //     avatars = imagePaths;
+  //     print(avatars[1]);
+  // }
   //widget responsible for displaying the list of sounds
   Widget buttonList() {
     return ListView.builder(
@@ -113,41 +111,41 @@ class Avs extends StatelessWidget {
 }
 
 
-class GetItemsFromAssets extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => GetItemsFromAssetsState();
-}
+// class GetItemsFromAssets extends StatefulWidget {
+//   @override
+//   State<StatefulWidget> createState() => GetItemsFromAssetsState();
+// }
 
- //var _avatars;
+//  //var _avatars;
 
-class GetItemsFromAssetsState extends State<GetItemsFromAssets> {
-  static var avatars;
-  @override
-  Widget build(BuildContext context) {
-    print("hello");
-    initAvatars(context);
-    return Scaffold();
-  }
+// class GetItemsFromAssetsState extends State<GetItemsFromAssets> {
+//   static var avatars;
+//   @override
+//   Widget build(BuildContext context) {
+//     print("hello");
+//     //initAvatars(context);
+//     return Scaffold();
+//   }
 
   
-  initAvatars(c) async {
-    // >> To get paths you need these 2 lines
-    final manifestContent =
-        await DefaultAssetBundle.of(c).loadString('AssetManifest.json');
+//   initAvatars() async {
+//     // >> To get paths you need these 2 lines
+//     final manifestContent =
+//         await DefaultAssetBundle.of(context).loadString('AssetManifest.json');
 
-    final Map<String, dynamic> manifestMap = json.decode(manifestContent);
-    // >> To get paths you need these 2 lines
+//     final Map<String, dynamic> manifestMap = json.decode(manifestContent);
+//     // >> To get paths you need these 2 lines
 
-    final imagePaths = manifestMap.keys
-        .where((String key) => key.contains('images/avatars/'))
-        .where((String key) => key.contains('.mp3'))
-        .toList();
-    print(imagePaths.toString() + "whtnw");
+//     final imagePaths = manifestMap.keys
+//         .where((String key) => key.contains('images/avatars/'))
+//         .where((String key) => key.contains('.mp3'))
+//         .toList();
+//     print(imagePaths.toString());
 
-    setState(() {
-      avatars = imagePaths;
-      print(avatars[1]);
+//     setState(() {
+//       avatars = imagePaths;
+//       print(avatars[1]);
       
-    });
-  }
-}
+//     });
+//   }
+// }

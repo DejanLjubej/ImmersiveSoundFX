@@ -59,7 +59,7 @@ class ExampleAppState extends State<ButtonListDisplay> {
         children: <Widget>[
           Container(
             height: _height,
-            width: 500,
+            width: 1000,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(
                     top: Radius.circular(20.0), bottom: Radius.circular(3)),
@@ -93,9 +93,9 @@ class ExampleAppState extends State<ButtonListDisplay> {
                               margin: const EdgeInsets.all(1),
                               child: Icon(_arrow)),
                           onPressed: () {
-                            initAvatars();
+                            //initAvatars();
                             //GetItemsFromAssets();
-                            GetItemsFromAssetsState().initAvatars(context);
+                            //GetItemsFromAssetsState.avatars.toString();
                             setState (() {
                               //this _i really shuldn't be here
                               _i = -1;
@@ -114,7 +114,7 @@ class ExampleAppState extends State<ButtonListDisplay> {
                         )),
                   ],
                 ),
-                AppBodyState().recordButton(),
+                AppBody(localFilePath),
                 
               ],
             ),
@@ -122,7 +122,7 @@ class ExampleAppState extends State<ButtonListDisplay> {
         ],
       ),
     );
-        }
+  }
     initAvatars() async {
           // >> To get paths you need these 2 lines
           final manifestContent = await DefaultAssetBundle.of(context).loadString('AssetManifest.json');

@@ -8,6 +8,7 @@ import 'package:file/local.dart';
 import 'dart:convert';
 import 'listOfSounds.dart';
 
+
 class GetItemsFromAssets extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => GetItemsFromAssetsState();
@@ -19,30 +20,32 @@ class GetItemsFromAssetsState extends State<GetItemsFromAssets> {
   static var avatars;
   @override
   Widget build(BuildContext context) {
-    print("hello");
+    //print("hello");
     initAvatars(context);
     return Scaffold();
   }
-
-  
-  initAvatars(c) async {
+  initAvatars(context) async {
     // >> To get paths you need these 2 lines
     final manifestContent =
-        await DefaultAssetBundle.of(c).loadString('AssetManifest.json');
+        await DefaultAssetBundle.of(context).loadString('AssetManifest.json');
 
     final Map<String, dynamic> manifestMap = json.decode(manifestContent);
     // >> To get paths you need these 2 lines
 
     final imagePaths = manifestMap.keys
-        .where((String key) => key.contains('images/avatars/'))
+        .where((String key) => key.contains('assets'))
         .where((String key) => key.contains('.mp3'))
         .toList();
-    print(imagePaths.toString() + "whtnw");
+        //print(imagePaths);
 
     setState(() {
       avatars = imagePaths;
-      print(avatars[1]);
       
     });
+      //print(avatars[1]);
+      
+
   }
+
+  
 }

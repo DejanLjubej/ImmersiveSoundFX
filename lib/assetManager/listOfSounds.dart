@@ -1,7 +1,6 @@
 
 var soundList = [
   "bell_sound.mp3",
-  "running.wav",
   "boom.mp3",
   "DontFailMeAgain.mp3",
   "Force.mp3",
