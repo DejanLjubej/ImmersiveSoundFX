@@ -7,6 +7,7 @@ import 'package:file/local.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
+
 class MyRecorder extends StatefulWidget {
   @override
   _MyAppState createState() => new _MyAppState();
@@ -15,14 +16,9 @@ class MyRecorder extends StatefulWidget {
 class _MyAppState extends State<MyRecorder> {
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Plugin audio recorder'),
-        ),
-        body: new AppBody(),
-      ),
-    );
+    return Container(child: 
+         new AppBody(),
+    ); 
   }
 }
 
@@ -80,6 +76,7 @@ class AppBodyState extends State<AppBody> {
       ),
     );
   }
+
 
   _start() async {
     try {

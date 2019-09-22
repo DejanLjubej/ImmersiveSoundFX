@@ -11,6 +11,7 @@ import 'package:file/file.dart';
 import 'package:file/local.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'voiceRecorder.dart';
 
 const kMinScrollBarHeight = 20.0;
 double _bcz = soundList.length / 2.round();
@@ -79,7 +80,6 @@ class _ExampleAppState extends State<ButtonListDisplay> {
                             setState(() {
                               //this _i really shuldn't be here
                               _i = -1;
-
                               if (_isExpanded != true) {
                                 _height = 450;
                                 _isExpanded = true;
@@ -134,7 +134,6 @@ class _ExampleAppState extends State<ButtonListDisplay> {
             margin: const EdgeInsets.all(1),
             child: Icon(Icons.record_voice_over)),
         onPressed: () {
-          
 
         });
   }
