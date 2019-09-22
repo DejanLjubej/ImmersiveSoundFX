@@ -5,28 +5,17 @@ import 'package:audio_recorder/audio_recorder.dart';
 import 'package:file/file.dart';
 import 'package:file/local.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_file_manager/flutter_file_manager.dart';
 import 'package:path_provider/path_provider.dart';
+import 'dart:async';
+import '../assetManager/directoryGetFiles.dart';
 
-
-class MyRecorder extends StatefulWidget {
-  @override
-  _MyAppState createState() => new _MyAppState();
-}
-
-class _MyAppState extends State<MyRecorder> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(child: 
-         new AppBody(),
-    ); 
-  }
-}
 
 class AppBody extends StatefulWidget {
-  final LocalFileSystem localFileSystem;
+  // final LocalFileSystem localFileSystem;
 
-  AppBody({localFileSystem})
-      : this.localFileSystem = localFileSystem ?? LocalFileSystem();
+  // AppBody(localFileSystem)
+  //     : this.localFileSystem = localFileSystem ?? LocalFileSystem();
 
   @override
   State<StatefulWidget> createState() => new AppBodyState();
@@ -36,60 +25,155 @@ class AppBodyState extends State<AppBody> {
   Recording _recording = new Recording();
   bool _isRecording = false;
   Random random = new Random();
-  TextEditingController _controller = new TextEditingController();
+  TextEditingController _controller = TextEditingController();
+  io.Directory directory;
+  String soundName = "";
 
-  @override
-  Widget build(BuildContext context) {
-    return new Center(
-      child: new Padding(
-        padding: new EdgeInsets.all(8.0),
-        child: new Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              new FlatButton(
-                onPressed: _isRecording ? null : _start,
-                child: new Text("Start"),
-                color: Colors.green,
-              ),
-              new FlatButton(
-                onPressed: _isRecording ? _stop : null,
-                child: new Text("Stop"),
-                color: Colors.red,
-              ),
-              new FlatButton(
-                onPressed: _isRecording ? _stop : null,
-                child: new Text("Delete"),
-                color: Colors.red,
-              ),
-              new TextField(
-                controller: _controller,
-                decoration: new InputDecoration(
-                  hintText: 'Enter a custom path',
-                ),
-              ),
-              new Text("File path of the record: ${_recording.path}"),
-              new Text("Format: ${_recording.audioOutputFormat}"),
-              new Text("Extension : ${_recording.extension}"),
-              new Text(
-                  "Audio recording duration : ${_recording.duration.toString()}")
-            ]),
-      ),
+  
+
+ Future<String> get _localPath async {
+  final directory = await getApplicationDocumentsDirectory();
+
+  return directory.path;
+}
+  
+  Future<String> createNameDialog(BuildContext context){
+    return showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Name your sound!"),
+          
+          content: TextField(controller: _controller,
+          
+          decoration: InputDecoration(
+            
+            
+            hintText: 'Enter a custom name',
+          ),
+          
+          ),
+          actions: <Widget>[
+            MaterialButton(
+              elevation: 10,
+              color: Colors.blueGrey,
+              onPressed: (){
+                
+        
+                Navigator.of(context).pop(_controller.text.toString());
+                soundName = _controller.text;
+              },
+              child: Text("Start recording!"),
+            )
+          ],
+        );
+      }
     );
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Container(child:  
+    RaisedButton(
+        shape: ContinuousRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        elevation: 5,
+        color: Colors.deepPurple[900],
+        textColor: Colors.white,
+        disabledColor: Colors.grey,
+        disabledTextColor: Colors.black,
+        padding: EdgeInsets.all(1.0),
+        splashColor: Colors.blueAccent,
+        child: Container(
+            height: 20,
+            width: 150,
+            margin: const EdgeInsets.all(1),
+            child: Icon(Icons.record_voice_over)),
+        onPressed: () {
+          
+          createNameDialog(context).then((onValue){
+            Scaffold.of(context).showSnackBar(SnackBar(content: Text("Sound saved as: " + onValue),));
+            _start();
+            timer();
+          
+        
+        },);
+          
+        }),
+    );
+//     null;
+// Widget recordButton() {
+//   }
+    
+   }
+  timer() {
+    
+    Timer(Duration(seconds: 5), () {
+       
+    _stop();
+      
+    });
+  }
 
-  _start() async {
+// _manageSoundDirectory()async{
+//   var root = await getExternalStorageDirectory();
+//     var path = root.path + "/Pictures";
+//     directory = new io.Directory(path);
+// }
+
+  // _start() async {
+    
+  //   try {
+  //     if (await AudioRecorder.hasPermissions) {
+  //       await AudioRecorder.start();
+  //       bool isRecording = await AudioRecorder.isRecording;
+
+  //         final directory = await getApplicationDocumentsDirectory();
+  //         io.Directory dir = io.Directory(directory.path+"flutter_assets");
+  //  //lednikou način       
+  //   //       var root = await getExternalStorageDirectory();
+  //   // var path = root.path + "/Pictures";
+  //   // io.Directory dir = new io.Directory(path);
+          
+  //         var files = await FileManager(root: dir).walk().toList();
+  //         print(files.toString());
+  //         _recording = new Recording(duration: new Duration(), path: dir.toString());
+  //         _isRecording = isRecording;
+   
+  //     } else {
+  //       Scaffold.of(context).showSnackBar(
+  //           new SnackBar(content: new Text("You must accept permissions")));
+  //     }
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
+ _start() async {
     try {
+
+
+      var applicationDocDir = await getApplicationDocumentsDirectory();
+          print("Application Documents dir: " + applicationDocDir.path.contains("cu").toString());
+      var appSupDir = await getApplicationSupportDirectory();
+          print("Application Support dir: " + appSupDir.toString());
+      var extStrDir = await getExternalStorageDirectory();
+          print("External Sorage dir: " + extStrDir.toString());
+      var libDir = await getLibraryDirectory();
+          print("Library dir "+ libDir.toString());
+      var tempDir =  getTemporaryDirectory();
+          print("Temp dir "+ tempDir.toString());
       if (await AudioRecorder.hasPermissions) {
         if (_controller.text != null && _controller.text != "") {
           String path = _controller.text;
           if (!_controller.text.contains('/')) {
-            io.Directory appDocDirectory =
+            io.Directory appDocDirectory = 
                 await getApplicationDocumentsDirectory();
-            path = appDocDirectory.path + '/' + _controller.text;
-            //path = "../../assets";
+            path = appDocDirectory.path+"/CustomSounds" + '/' + _controller.text;
           }
           print("Start recording: $path");
+          
           await AudioRecorder.start(
               path: path, audioOutputFormat: AudioOutputFormat.AAC);
         } else {
@@ -108,48 +192,39 @@ class AppBodyState extends State<AppBody> {
       print(e);
     }
   }
-
   _stop() async {
-    var recording = await AudioRecorder.stop();
-    print("Stop recording: ${recording.path}");
-    bool isRecording = await AudioRecorder.isRecording;
-    File file = widget.localFileSystem.file(recording.path);
-    print("  File length: ${await file.length()}");
-    setState(() {
-      _recording = recording;
-      _isRecording = isRecording;
-    });
-    _controller.text = recording.path;
+
+    try{
+      var recording = await AudioRecorder.stop();
+      
+      print("Stop recording: ${recording.path}");
+      bool isRecording = await AudioRecorder.isRecording;
+      // File file = widget.localFileSystem.file(recording.path);
+      // print("  File length: ${await file.length()}");
+        _recording = recording;
+        _isRecording = isRecording;
+        //_controller.text = recording.path;
+        
+        
+        // int rangeMax = recording.path.length - recording.path.split("/")[4].length;
+        // await io.File(recording.path).rename(recording.path.substring(0,rangeMax) + "thname.mp3");
+        //print(recording.path.split("/")[4].length);
+
+       
+        await _rename(recording.path);
+    
+    }catch (e){
+      print( e);
+    }
+  }
+  
+  _rename(recordingPath) async{
+        if(soundName.contains("/")){
+          soundName = "new Custom Sound";
+        }        
+        int rangeMax =recordingPath.length - recordingPath.split("/")[4].length;
+        await io.File(recordingPath).rename(recordingPath.substring(0,rangeMax) + soundName +".mp3");
+    
   }
 
-_delete() async{
-  try{
-     if (await AudioRecorder.hasPermissions) {
-        if (_controller.text != null && _controller.text != "") {
-          String path = _controller.text;
-          if (!_controller.text.contains('/')) {
-            io.Directory appDocDirectory =
-                await getApplicationDocumentsDirectory();
-            path = appDocDirectory.path + '/' + _controller.text;
-            path = "../../assets";
-          }
-          print("Start recording: $path");
-          await AudioRecorder.start(
-              path: path, audioOutputFormat: AudioOutputFormat.AAC);
-        } else {
-          await AudioRecorder.start();
-        }
-        bool isRecording = await AudioRecorder.isRecording;
-        setState(() {
-          _recording = new Recording(duration: new Duration(), path: "");
-          _isRecording = isRecording;
-        });
-      } else {
-        Scaffold.of(context).showSnackBar(
-            new SnackBar(content: new Text("You must accept permissions")));
-      }
-  }catch (e){
-    print(e);
-  }
-}
 }
