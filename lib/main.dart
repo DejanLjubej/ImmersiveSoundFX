@@ -6,12 +6,14 @@ import 'package:flutter/rendering.dart';
 import 'Widgets/buttonRow.dart';
 import 'assetManager/directoryGetFiles.dart';
 import 'dart:convert';
+import 'Functionalities/createDirectoryForStorage.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   
   @override
+  
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'situational sound effects',
@@ -47,6 +49,7 @@ class Avs extends StatelessWidget {
         child: Stack(
           children: <Widget>[
                   //GetItemsFromAssetsState(),
+            CreateDirectory(),
                   GetItemsFromAssets(),
             Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

@@ -17,6 +17,8 @@ import '../assetManager/listOfSounds.dart';
 import '../assetManager/directoryGetFiles.dart';
 import 'voiceRecorder.dart';
 
+import 'package:audioplayers/audio_cache.dart';
+
 const kMinScrollBarHeight = 20.0;
 double _bcz = soundList.length / 2.round();
 final int _number = _bcz.toInt();
@@ -47,6 +49,7 @@ class ExampleAppState extends State<ButtonListDisplay> {
 
   bool _isExpanded = false;
   IconData _arrow = Icons.arrow_drop_up;
+  AudioCache audioCache = new AudioCache();
 
   @override
   Widget build(BuildContext context) {
@@ -97,6 +100,7 @@ class ExampleAppState extends State<ButtonListDisplay> {
                             //GetItemsFromAssets();
                             //GetItemsFromAssetsState.avatars.toString();
                             setState (() {
+                              //audioCache.play("/data/data/com.example.temp/app_flutter/onr.m4a");
                               //this _i really shuldn't be here
                               _i = -1;
 
@@ -114,7 +118,7 @@ class ExampleAppState extends State<ButtonListDisplay> {
                         )),
                   ],
                 ),
-                AppBody(localFilePath),
+                AppBody(),
                 
               ],
             ),
