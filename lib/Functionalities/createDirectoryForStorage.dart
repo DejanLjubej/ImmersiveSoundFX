@@ -15,7 +15,7 @@ var dir = new Directory("");
 createDir() async {
   // baseDir = await getExternalStorageDirectory(); //only for Android
    Directory baseDir = await getApplicationDocumentsDirectory(); //works for both iOS and Android
-  String dirToBeCreated = "CustomSounds";
+  String dirToBeCreated = "/CustomSounds";
   String finalDir = join(baseDir.toString(), dirToBeCreated);
   dir = Directory(finalDir);
   bool dirExists = await dir.exists();

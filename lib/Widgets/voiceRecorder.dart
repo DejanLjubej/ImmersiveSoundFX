@@ -171,7 +171,7 @@ class AppBodyState extends State<AppBody> {
           if (!_controller.text.contains('/')) {
             io.Directory appDocDirectory = 
                 await getApplicationDocumentsDirectory();
-            path = appDocDirectory.path + '/' + _controller.text;
+            path = appDocDirectory.path+"/CustomSounds" + '/' + _controller.text;
           }
           print("Start recording: $path");
           
