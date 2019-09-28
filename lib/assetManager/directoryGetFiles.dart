@@ -30,7 +30,7 @@ class GetItemsFromAssetsState extends State<GetItemsFromAssets> {
         await DefaultAssetBundle.of(context).loadString('AssetManifest.json');
 
     final Map<String, dynamic> manifestMap = json.decode(manifestContent);
-    // >> To get paths you need these 2 lines
+    
 
     final imagePaths = manifestMap.keys
         .where((String key) => key.contains('assets'))

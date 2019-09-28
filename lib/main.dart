@@ -7,6 +7,7 @@ import 'Widgets/buttonRow.dart';
 import 'assetManager/directoryGetFiles.dart';
 import 'dart:convert';
 import 'Functionalities/createDirectoryForStorage.dart';
+import 'Functionalities/customSoundPlayer.dart';
 
 void main() => runApp(MyApp());
 
@@ -45,12 +46,13 @@ class Avs extends StatelessWidget {
         title: Text('Situational Sound Effects'),
       ),
       body: Container(
-        margin: const EdgeInsets.all(10.0),
+        margin: const EdgeInsets.all(5.0),
         child: Stack(
           children: <Widget>[
                   //GetItemsFromAssetsState(),
-            CreateDirectory(),
-                  GetItemsFromAssets(),
+            //CreateDirectory(),
+            PlayCustomSound(),
+            GetItemsFromAssets(),
             Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -101,12 +103,14 @@ class Avs extends StatelessWidget {
   // }
   //widget responsible for displaying the list of sounds
   Widget buttonList() {
+    
     return ListView.builder(
         scrollDirection: Axis.vertical,
         itemCount: _number,
         shrinkWrap: true,
         itemBuilder: (BuildContext context, int index) {
           _i += 2;
+         
           return rowOfButtons(_i);
         });
   }
