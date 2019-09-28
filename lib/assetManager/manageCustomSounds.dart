@@ -20,7 +20,7 @@ getRecordedSounds(int i) async{
     new Directory(path).create(recursive: false);
     dir = Directory(path);
     //localFilePath = Directory(path).toString();
-    //print("a1"+ localFilePath+"  asdfadfasd   " + root.toString() +"   sadfasdf  "+ await path + " asdfas" + files.toString());
+   // print("a1"+ localFilePath+"  asdfadfasd   " + root.toString() +"   sadfasdf  "+ await path + " asdfas" + files.toString());
     files = await FileManager(root: dir).walk().toList();
     if (files.length != 0){
       first = await files[i].path;

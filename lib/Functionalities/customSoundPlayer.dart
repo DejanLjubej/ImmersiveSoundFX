@@ -95,7 +95,7 @@ class PlayCustomSoundState extends State<PlayCustomSound> {
     //localFilePath = Directory(path).toString();
     files = await FileManager(root: dir).walk().toList();
     if(files.length != 0){
-      first = files[i].path;
+      first = files[i];
     }else{
       first="";
     }
@@ -128,8 +128,8 @@ class PlayCustomSoundState extends State<PlayCustomSound> {
   }
 
   Future _playLocal(n) async {
-    print("am I here " + files[n].path.toString());
-    print(files[n].path.toString());
+    print("am I here " + files[n].toString());
+    print(files[n].toString());
     await audioPlayer.play(files[n].path.toString(), isLocal: true);
     setState(() => playerState = PlayerState.playing);
   }
