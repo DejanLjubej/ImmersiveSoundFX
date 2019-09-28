@@ -158,6 +158,8 @@ class AppBodyState extends State<AppBody> {
           print("Application Documents dir: " + applicationDocDir.path.contains("cu").toString());
       var appSupDir = await getApplicationSupportDirectory();
           print("Application Support dir: " + appSupDir.toString());
+          var a = await getExternalStorageDirectory();
+          print(a.path);
       var extStrDir = await getExternalStorageDirectory();
           print("External Sorage dir: " + extStrDir.toString());
       var libDir = await getLibraryDirectory();
@@ -166,14 +168,17 @@ class AppBodyState extends State<AppBody> {
           print("Temp dir "+ tempDir.toString());
       if (await AudioRecorder.hasPermissions) {
         if (_controller.text != null && _controller.text != "") {
+
+          io.Directory applDir = await getApplicationDocumentsDirectory();
+          print(applDir.list());
           String path = _controller.text;
           if (!_controller.text.contains('/')) {
             io.Directory appDocDirectory = 
                 await getApplicationDocumentsDirectory();
-            path = appDocDirectory.path+"/CustomSounds" + '/' + _controller.text;
+            path = appDocDirectory.path+ '/' + _controller.text;
+            print(appDocDirectory.list().toString());
           }
           print("Start recording: $path");
-          
           await AudioRecorder.start(
               path: path, audioOutputFormat: AudioOutputFormat.AAC);
         } else {
