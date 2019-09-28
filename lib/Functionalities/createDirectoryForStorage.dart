@@ -13,9 +13,9 @@ class CreateDirectory extends StatefulWidget {
 var dir = new Directory("");
 
 createDir() async {
-  Directory baseDir = await getExternalStorageDirectory(); //only for Android
-   //Directory baseDir = await getApplicationDocumentsDirectory(); //works for both iOS and Android
-  String dirToBeCreated = "CustomSounds";
+  // baseDir = await getExternalStorageDirectory(); //only for Android
+   Directory baseDir = await getExternalStorageDirectory(); //works for both iOS and Android
+  String dirToBeCreated = "/CustomSounds";
   String finalDir = join(baseDir.toString(), dirToBeCreated);
   dir = Directory(finalDir);
   bool dirExists = await dir.exists();

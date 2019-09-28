@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:temp/assetManager/listOfSounds.dart';
 import 'package:temp/assetManager/directoryGetFiles.dart';
 import 'buttonState.dart';
+
 //import 'package:temp/main.dart';
 Widget tryoutButton(int i) {
-  
   AudioCache audioCache = new AudioCache();
   return Expanded(
       flex: 1,
@@ -27,16 +27,18 @@ Widget tryoutButton(int i) {
                 padding: EdgeInsets.all(1.0),
                 splashColor: Colors.blueAccent,
                 onPressed: () {
-                  audioCache.play(GetItemsFromAssetsState.avatars[i].toString().split("/")[1]);
+                  audioCache.play(GetItemsFromAssetsState.avatars[i]
+                      .toString()
+                      .split("/")[1]);
                 },
                 child: Container(
                   padding: EdgeInsets.all(7),
                   width: 150,
                   child: Text(
-                    //ExampleAppState.mainSounds[i],
-                    //soundList[i],
-                    GetItemsFromAssetsState.avatars[i].toString().split("/")[1].split(".mp3")[0],
-
+                    GetItemsFromAssetsState.avatars[i]
+                        .toString()
+                        .split("/")[1]
+                        .split(".mp3")[0],
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: TextStyle(fontSize: 20.0),
