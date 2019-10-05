@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "577825285635",
+    "firebase_url": "https://immersive-sound-fx.firebaseio.com",
+    "project_id": "immersive-sound-fx",
+    "storage_bucket": "immersive-sound-fx.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577825285635:android:239dc8eacafaa91c6d5036",
+        "android_client_info": {
+          "package_name": "com.example.temp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577825285635-0nn6qd3d9n5q44165th6gfo8olv70i1g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJWLXDpJISU-6DdTqyMGHJwcG8kCwG1-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577825285635-0nn6qd3d9n5q44165th6gfo8olv70i1g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -24,7 +24,7 @@ getRecordedSounds(int i) async{
     files = await FileManager(root: dir).walk().toList();
     if (files.length != 0){
       first = await files[i].path;
-  print("wadabavtnav" + first.path);
+  //print("wadabavtnav" + first.path);
     }else{
       first = "";
     }

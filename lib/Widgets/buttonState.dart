@@ -3,7 +3,6 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'dart:ui';
-import 'package:temp/assetManager/listOfSounds.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'buttonRow.dart';
@@ -13,16 +12,17 @@ import 'dart:math';
 import 'package:file/file.dart';
 import 'package:file/local.dart';
 
-import '../assetManager/listOfSounds.dart';
 import '../assetManager/directoryGetFiles.dart';
 import 'voiceRecorder.dart';
 
 import 'package:audioplayers/audio_cache.dart';
 import '../Functionalities/customSoundPlayer.dart';
 
+//import 'package:firebase_admob/firebase_admob.dart';
+
 const kMinScrollBarHeight = 20.0;
-double _bcz = soundList.length / 2.round();
-final int _number = _bcz.toInt();
+
+final int _number = 100;
 
 class ButtonListDisplay extends StatefulWidget {
   // final LocalFileSystem localFileSystem;
@@ -35,6 +35,15 @@ class ButtonListDisplay extends StatefulWidget {
 }
 
 class ExampleAppState extends State<ButtonListDisplay> {
+
+// @override
+// void initState(){
+//   super.initState();
+//   FirebaseAdMob.instance.initialize(appId: 'ca-app-pub-3940256099942544~3347511713').then((response){
+//     myBanner..load()..show();
+//   });
+// }
+  
   Recording _recording = new Recording();
   bool _isRecording = false;
   Random random = new Random();
@@ -44,14 +53,16 @@ class ExampleAppState extends State<ButtonListDisplay> {
 
   String localFilePath;
   double _height = 50;
-  int _i;
+  int _i=0;
 
   bool _isExpanded = false;
   IconData _arrow = Icons.arrow_drop_up;
   AudioCache audioCache = new AudioCache();
 
   @override
+  
   Widget build(BuildContext context) {
+    //FirebaseAdMob.instance.initialize(appId: "ca-app-pub-3940256099942544~3347511713");
     return Container(
       margin: const EdgeInsets.all(10.0),
       child: Column(
@@ -101,7 +112,7 @@ class ExampleAppState extends State<ButtonListDisplay> {
                             setState(() {
                               //audioCache.play("/data/data/com.example.temp/app_flutter/onr.m4a");
                               //this _i really shuldn't be here
-                              _i = 0;
+                              //_i = 1;
 
                               if (_isExpanded != true) {
                                 _height = 450;
@@ -124,8 +135,9 @@ class ExampleAppState extends State<ButtonListDisplay> {
                 // )
                 Expanded(
                   flex: 1,
-                  child: buttonList(),
-                )
+                  child: 
+                  buttonList(),
+                ),
                 //RecordButton(),
                 //PlayCustomSound(),
               ],
@@ -147,11 +159,12 @@ class ExampleAppState extends State<ButtonListDisplay> {
   //   },
   // );
   buttonList() {
+    int a=_i;
     return
     
     
     FutureBuilder(
-      future: customSoundRow(_i, context),
+      future: customSoundRow(a, context),
       builder: (context, snap) {
         switch (snap.connectionState) {
           case ConnectionState.active:
@@ -171,19 +184,23 @@ class ExampleAppState extends State<ButtonListDisplay> {
                 textAlign: TextAlign.center,
               );
             return ListView.builder(
-              scrollDirection: Axis.vertical,
-              itemCount: 2,
-              shrinkWrap: true,
-              itemBuilder: (BuildContext context, int index) {
-                _i += 2;
+                scrollDirection: Axis.vertical,
+                itemCount: 5,
+                shrinkWrap: true,
+                itemBuilder: (BuildContext context, int index) {
+                  a += 1;
+                  try{
 
-                print(snap.data.toString() +
-                    " aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                      print(snap.data.toString() +
+                          " aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
-                return 
-                snap.data;
+                      return 
+                      snap.data;
+                  }catch(e){
+                    return Container();
+                  }
                 //  customSoundRow(_i, context);
-              },
+                }
             );
         }
         return Container();
@@ -274,3 +291,24 @@ class ExampleAppState extends State<ButtonListDisplay> {
   //widget responsible for displaying the list of sounds
 
 }
+// MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
+//   keywords: <String>['flutterio', 'beautiful apps'],
+//   contentUrl: 'https://flutter.io',
+//   birthday: DateTime.now(),
+//   childDirected: false,
+//   designedForFamilies: false,
+//   gender: MobileAdGender.male, // or MobileAdGender.female, MobileAdGender.unknown
+//   testDevices: <String>[], // Android emulators are considered test devices
+// );
+
+// BannerAd myBanner = BannerAd(
+//   // Replace the testAdUnitId with an ad unit id from the AdMob dash.
+//   // https://developers.google.com/admob/android/test-ads
+//   // https://developers.google.com/admob/ios/test-ads
+//   adUnitId: BannerAd.testAdUnitId,
+//   size: AdSize.smartBanner,
+//   targetingInfo: targetingInfo,
+//   listener: (MobileAdEvent event) {
+//     print("BannerAd event is $event");
+//   },
+// );

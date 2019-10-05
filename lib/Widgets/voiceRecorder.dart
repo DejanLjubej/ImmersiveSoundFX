@@ -38,7 +38,7 @@ class RecordButtonState extends State<RecordButton> {
   bool disabled = true;
 
     recordButton(BuildContext context, int i) async{
-      // print("kuk je ta i da me tak jebe pm oipfpafjaosf"+i.toString());
+       print("kuk je ta i v reord button: "+i.toString());
       if (i<1){
         disabled=false;
       }
@@ -76,13 +76,13 @@ class RecordButtonState extends State<RecordButton> {
                   Scaffold.of(context).showSnackBar(SnackBar(
                     content: Text("Sound saved as: " + onValue),
                   ));
-                  FutureBuilder(
-                    future: 
-                  _start(),
-                  builder: (context, snap){
-                    return snap.data;
-                  },
-                  );
+                  _start();
+                  // FutureBuilder(
+                  //   future: 
+                  // builder: (context, snap){
+                  //   return snap.data;
+                  // },
+                  // );
                   timer();
                 },
               );
@@ -239,7 +239,7 @@ class RecordButtonState extends State<RecordButton> {
 
     await io.File(recordingPath)
         .rename(recordingPath.substring(0, rangeMax) + soundName + ".mp3");
-      await PlayCustomSoundState().getRecordedSounds();
+      //await PlayCustomSoundState().getRecordedSounds();
   }
 //  _start() async {
 //     try {

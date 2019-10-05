@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:file/local.dart';
 import 'dart:convert';
-import 'listOfSounds.dart';
 
 
 class GetItemsFromAssets extends StatefulWidget {
@@ -46,6 +45,8 @@ class GetItemsFromAssetsState extends State<GetItemsFromAssets> {
       
 
   }
-
+  // Future<int> numberOfAssets() async{
+  //   return await avatars.length;
+  // }
   
 }

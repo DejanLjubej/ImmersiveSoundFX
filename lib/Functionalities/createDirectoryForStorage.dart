@@ -20,7 +20,7 @@ createDir() async {
   dir = Directory(finalDir);
   bool dirExists = await dir.exists();
   if(!dirExists){
-     dir.create(/*recursive=true*/); //pass recursive as true if directory is recursive
+     dir.create(recursive: true); //pass recursive as true if directory is recursive
   }
   //Now you can use this directory for saving file, etc.
   //In case you are using external storage, make sure you have storage permissions.
@@ -39,6 +39,7 @@ class CreateDirectoryState extends State<CreateDirectory>{
 
   @override
   Widget build(BuildContext context) {
+
     return Container();
   }
 }

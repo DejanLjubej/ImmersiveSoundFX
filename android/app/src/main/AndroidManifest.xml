@@ -12,6 +12,8 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="temp"
         android:icon="@mipmap/ic_launcher">
+
+        
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -31,5 +33,10 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6864369459139595~3414829771"/>
+
     </application>
 </manifest>

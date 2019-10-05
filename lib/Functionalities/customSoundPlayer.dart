@@ -17,7 +17,7 @@ class PlayCustomSound extends StatefulWidget {
 enum PlayerState { stopped, playing, paused }
 typedef void OnError(Exception exception);
 const kUrl =
-    "/storage/emulated/0/Android/data/com.example.temp/files/Sounds/af.mp3";
+    "/storage/emulated/0/Android/data/com.example.temp/files/Sounds/fjg.mp3";
 
 class PlayCustomSoundState extends State<PlayCustomSound> {
   Duration duration;
@@ -49,10 +49,10 @@ class PlayCustomSoundState extends State<PlayCustomSound> {
   StreamSubscription _audioPlayerStateSubscription;
 
   @override
-  void initState() {
+  void initState(){
     super.initState();
     initAudioPlayer();
-    getRecordedSounds();
+    getRecordedSounds(i);
   }
 
   @override
@@ -86,7 +86,8 @@ class PlayCustomSoundState extends State<PlayCustomSound> {
     });
   }
 
-  getRecordedSounds() async {
+  getRecordedSounds(int i) async {
+    print(i);
     root = await getExternalStorageDirectory();
     path = root.path + "/Sounds";
     new Directory(path).create(recursive: false);
@@ -101,14 +102,15 @@ class PlayCustomSoundState extends State<PlayCustomSound> {
     }
 
     localFilePath = first.toString();
-    print("localfilepath " +
-        localFilePath +
-        "  root strnig   " +
-        root.toString() +
-        "   path  " +
-        path +
-        " all files" +
-        files.toString());
+    return localFilePath;
+    // print("localfilepath " +
+    //     localFilePath +
+    //     "  root strnig   " +
+    //     root.toString() +
+    //     "   path  " +
+    //     path +
+    //     " all files" +
+    //     files.toString());
   }
 
   getListOfItems() async {
@@ -128,10 +130,14 @@ class PlayCustomSoundState extends State<PlayCustomSound> {
   }
 
   Future _playLocal(n) async {
-    print("am I here " + files[n].toString());
-    print(files[n].toString());
-    await audioPlayer.play(files[n].path.toString(), isLocal: true);
+    //await getRecordedSounds(n);
+    print("is _playLocal the issue?");
+    print(n);
+    audioPlayer = new AudioPlayer();
+    await audioPlayer.play(n, isLocal: true);
     setState(() => playerState = PlayerState.playing);
+    //print(files[n].path.toString());
+    //print("am I here " + files[n].path.toString());
   }
 
   Future pause() async {
@@ -160,9 +166,14 @@ class PlayCustomSoundState extends State<PlayCustomSound> {
   }
 
   playCustomSound(n) async{
-    return FutureBuilder(
+    return 
+    //Expanded(child: 
+     FutureBuilder(
+       future: getRecordedSounds(n),
       builder: (context, snap) {
-        return Expanded(
+        return Row(children: <Widget>[
+
+         Expanded(
             flex: 1,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -192,12 +203,17 @@ class PlayCustomSoundState extends State<PlayCustomSound> {
                           ],
                         )),
                     onPressed: () {
-                      _playLocal(n);
+                      _playLocal(snap.data);
+                      print(n);
                     }),
               ],
-            ));
+            ))
+        ],);
       },
     );
+    // ,
+    // flex: 1,
+    // );
   }
 }
 
