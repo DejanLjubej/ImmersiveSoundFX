@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:577825285635:android:239dc8eacafaa91c6d5036",
+        "mobilesdk_app_id": "1:577825285635:android:88a33010837115916d5036",
         "android_client_info": {
-          "package_name": "com.example.temp"
+          "package_name": "com.immersipi.ImmersiveSoundFX"
         }
       },
       "oauth_client": [

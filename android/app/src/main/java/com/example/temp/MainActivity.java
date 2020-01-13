@@ -1,4 +1,4 @@
-package com.example.temp;
+package com.immersipi.ImmersiveSoundFX;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
