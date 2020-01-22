@@ -1,4 +1,4 @@
-import 'package:ImmersiveSoundFX/Ads/bannerAdState.dart';
+import '../Ads/bannerAdState.dart';
 import 'package:flutter/material.dart';
 import 'FavoritesPage.dart';
 import '../Functionalities/DisplayButtonList.dart';
