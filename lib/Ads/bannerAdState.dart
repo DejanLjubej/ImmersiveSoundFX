@@ -20,7 +20,7 @@ class _DisplayBannerState extends State<DisplayBanner> {
   Widget build(BuildContext context) {
     (MediaQuery.of(context).size.height * 0.1).floor();
     FirebaseAdMob.instance
-        .initialize(appId: 'ca-app-pub-4752279327225089~7606863797')
+        .initialize(appId: 'ca-app-pub-3940256099942544~3347511713')
         .then((response) {
       myBanner
         ..load()
@@ -61,14 +61,14 @@ MobileAdTargetingInfo targetingInfo = MobileAdTargetingInfo(
   childDirected: false,
 
   testDevices: <String>[
-    "AA47169735E1515727A4C0336DBEA8CF"
+    ""
   ], // Android emulators are considered test devices
 );
 BannerAd myBanner = BannerAd(
   // Replace the testAdUnitId with an ad unit id from the AdMob dash.
   // https://developers.google.com/admob/android/test-ads
   // https://developers.google.com/admob/ios/test-ads
-  adUnitId: "ca-app-pub-4752279327225089/4789128769",
+  adUnitId: "ca-app-pub-3940256099942544/6300978111",
   size: AdSize.banner,
   targetingInfo: targetingInfo,
   listener: (MobileAdEvent event) {
