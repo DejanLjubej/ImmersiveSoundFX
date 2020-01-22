@@ -1,53 +1,31 @@
+
+import 'dart:ui';
+import 'package:ImmersiveSoundFX/Styles/CollorPallete.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
+import 'Pages/MainPage.dart';
+import 'Styles/CollorPallete.dart';
+var colorOne= Color.fromARGB(255, 0, 173, 181);
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
-  
-  Widget build (BuildContext context){
-    
+  Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return MaterialApp(
-      title: 'Situational Sound Effects',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Situational Sound Effects'),
-        ),
-        body: Center(
-          child: btn(),
-        ), 
-
+      title: 'Immersive sound FX',
+      home: MainPage(),
+      theme: ThemeData(
+        brightness: Brightness.light,
+        canvasColor: secondaryColor,
+        primaryColor: themeColor,
       ),
+      
     );
   }
-
-  Widget tryoutButton(){
-    return  FlatButton(
-     
-      color: Colors.blue,
-      textColor: Colors.white,
-      disabledColor: Colors.grey,
-      disabledTextColor: Colors.black,
-      padding: EdgeInsets.all(8.0),
-      splashColor: Colors.blueAccent,
-      onPressed: () {
-        /*...*/
-      },
-      child: Text(
-        "Sound Name/Icon",
-        style: TextStyle(fontSize: 20.0),
-      ),
-    );
-  }
-
-    Widget btn(){
-      return ListView(
-        children: <Widget>[
-          tryoutButton(),
-          tryoutButton(),
-          tryoutButton(),
-          tryoutButton(),
-        ],
-      );
-    }  
 }
+
+
+
