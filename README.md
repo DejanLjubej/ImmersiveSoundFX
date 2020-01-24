@@ -1,8 +1,10 @@
-# temp
+# ImmersiveSoundFX
 
 A new Flutter project.
 
 ## Getting Started
+
+The custom scripts are located in lib foulder
 
 This project is a starting point for a Flutter application.
 
